@@ -1,0 +1,68 @@
+NGIC9 Extended Changelist:
+
+Version 0.3 - First Release intended for public via TiPerformance
+
+-Defined Functions for Idle Spark Correction's
+-Descriptions for all known components + Table Scalers linked wherever possable
+-Correction to convert Torque managemnet values into Newton Meters
+-(NGIC9 Only) Fixed AT Transmission Tables, Only N9XJ4 has shift offset tables, NGIC9 does not.
+-Located Spark Upper and Lower Clip Scalers which were only available previously in EL or older XDFs but were still limiting spark in N9XJ4 and NGIC9.
+-Various other tweaks
+
+
+Version 0.31
+
+-Reverse engineered some items from NGVB5 matching there data to NGIC9, such as:
+	*ACT Fraction for ECT/ACT for Startup and Warmup fuel tables
+	*Fallback ISC Duty if Load (MAF/MAP sensor) fail + TPS fail
+	*Fallback Desired RPM if above condtions
+	*Diff Ratio
+	*Also pending adding some Idle Scalers in v0.32
+-Added Final Shift Pressure Multiplier
+-Added 2 flags for LPG Fitted & LPG Dedicated Mode. Which affect the EEC operation in relation to LPG.
+-Added some items that are being checked / tested
+
+
+Version 0.4
+
+-Reverse engineered many items from American SD bins relating to various features
+-Applied small tweaks and corrected minor issues
+
+
+Version 0.41
+
+-Arranged items in H/W Configuration into subfolders and added misplaced items in Fueling and Limits folders into H/W Configuraiton subfolders
+-Provided descriptions for some H/W Config items
+-Updated Minimum Acceptable Engine Torque function with a new correction to correctly display NM torque
+-Added Enter Minimum Torque mode and Exit Minimum Torque mode rpm scalers
+-Added Torque Frixtion Loss for ECT table which subtracts estimated Torque for cold ECT
+-Corrected naming for Transmission Line Pressure tables. They are shift adders not Base Pressure Values
+-Some other fixes and tweaks
+
+
+Version 0.42
+
+-Added new items for controlling the IMRC system
+-Fixed IMRC open and closed tables (Added Row and Columm funcitons, created correciton formula)
+-Some new items in Misc section being tested
+-2 new multipliers added for sensor final values (Sensor 5 - TP Volts? and Sensor 6)
+
+
+Version 0.43
+
+-Corrected some small issues with incorrectly identified tables.
+-Added shift pressure offsets for Transmission Temperature and Current Gear (Pending Testing).
+-Added Adaptive Shift Threshold RPM scaler.
+-Added Adaptive Shift Base Target Shift Time Table.
+-Added new Table Scalers.
+
+
+Version 0.50
+
+-Changed descriptions of the Main Fuel Tables after verifying there actual behavour with a Moats QH.
+-Changed some correction formulas on scalers and tables after doing payload verification with the QH. Notably the Injector PW formula which is X/128 now.
+
+
+Version 0.51
+
+-Polish up for first upload to GitHub Repo. Some Name and Description cleanup.
