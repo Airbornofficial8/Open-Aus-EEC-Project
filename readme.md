@@ -8,6 +8,7 @@ This Repo contains various files and information relating to the above mentioned
 
 ## Special Thanks
 A special thank you to the people who made this project of mine a reality:
+
 -Jason Bolger
 
 -Kendall Baker
