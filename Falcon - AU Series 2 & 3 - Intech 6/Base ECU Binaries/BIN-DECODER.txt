@@ -1,0 +1,62 @@
+#	strategy		engine		trans		diff		notes
+--------------------------------------------------------------------------------
+	12AF_NGIC9A5		std 4.0 	manual 		3.23:1		Forte/Futura/S
+	12BE_NGIC9B3		std 4.0		auto		3.08:1		Forte/Futura/S (old revision)
+??	12BF*			??		??		??		??
+	12CD_NGIC9CF		vct 4.0		auto		3.45:1		GHIA VCT
+??	12DD*			std 4.0		auto		3.23:1		Forte/Futura/S/Fairmont with IRS
+??	12EE*			std 4.0		auto		??		Police pack (OPT20)
+	12FD_NGIC9F9		std 4.0		auto		3.23:1		ute (mostly same as 12BE, except trans shifts 3.08 vs 3.23 gears)
+??	12FE*			??		??		??		??
+??	12GA*			hp  4.0		auto		??		Police pack (OPT20) with HP engine
+??	12HD*			??		??		??		??
+??	12KD*			lpg 4.0		??		??		??
+??	12LD*			lpg 4.0		auto		3.08:1		dedicated LPG
+	12MC_NGIC9M5 		lpg 4.0		manual		3.23:1		dedicated LPG
+??	12ND*			??		??		??		??
+??	12PC*			hp  4.0		auto		3.45:1		XR6 HP ute (Late XLS ute)
+??	12TD*			hp  4.0		manual		3.45:1		XR6 HP ute (Late XLS ute)
+??	12UD*			hp  4.0		manual		3.45:1		XR6 HP
+	12VC_NGIC9V7		hp  4.0		auto		3.45:1		XR6 HP
+	12WD_NGIC9WG		vct 4.0		manual		3.45:1		XR6 VCT
+??	12XC*			vct 4.0		auto		3.45:1		XR6 VCT
+	12ZE_NGIC9Z4		std 4.0		auto		3.08:1		tickford dual fuel
+--------------------------------------------------------------------------------
+	22AB_NGIC9AJ		vct 4.0		manual		3.45:1		has 180km/h speed limiter, otherwise same as 12WD
+??	22BA*			??		??		??		??
+??	22EA*			??		??		??		??
+--------------------------------------------------------------------------------
+??	22TA*			lpg 4.0		auto		3.08:1		dedicated LPG sedan
+??	22UA*			lpg 4.0		auto		??		??
+	22VA_NGICA2Z		lpg 4.0		auto		3.23:1		dedicated LPG ute
+??	22XA*			lpg 4.0		??		??		??
+
+
+12BF
+12DD
+12EE
+12FE
+12GA
+12HD
+12KD
+12LD
+12MC
+12ND
+12PC
+12TD
+12UD
+12VC
+12XC
+22BA
+22EA
+22TA
+22UA
+22XA
+
+12DD
+12VB
+12VC
+12TD
+22BA
+12BF
+12FE
