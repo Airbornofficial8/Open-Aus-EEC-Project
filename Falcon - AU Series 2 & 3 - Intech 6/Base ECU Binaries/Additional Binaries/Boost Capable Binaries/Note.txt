@@ -1,0 +1,20 @@
+!!!EXPERIMENTAL - EXPERIMENTAL - EXPERIMENTAL!!!
+
+
+USE CAUTION WHEN ATTEMPTING TO RUN THIS BINARY AND DEF. ISSUES WILL LIKELY EXIST!
+
+
+Boost Capable Binaries provide more features for boosted AU applications than other binaries.
+
+Current version is: 0.1 Alpha
+
+Features:
+-Enables up-to 200% VE Load without any hacks or workarounds while maintianing a 0.5% step size
+-Configured out of the box to work with the 2 bar XR6t OEM Map sensor available from Ti Performance
+-Table scalers already tweaked for you to handle up-to 14 psi of positive pressure.
+
+Downsides:
+-Airmass Flow Multiplier is no longer configurable
+-Load beyond 200% is fully unsupported. No additonal hacks to achive more load are possible
+-This binary impliments an existing known hack in a more user friendly way and is not a full solution.
+
