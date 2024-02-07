@@ -1,4 +1,4 @@
-<!-- Written 02/05/2024 14:22:44 -->
+<!-- Written 02/07/2024 13:42:10 -->
 <XDFFORMAT version="1.70">
   <XDFHEADER>
     <flags>0x1</flags>
@@ -6031,7 +6031,7 @@
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xC61">
     <title>Injector Slope</title>
-    <description>Sc0199 - Injector flow rate in # per hr. Change if you have upgraded injectors. The injectors rated flow at your desired / regulator fuel pressure would go here.</description>
+    <description>Sc0199 - Injector flow rate in # per hr. Change if you have upgraded injectors. The injectors rated flow at your desired / regulator fuel pressure would go here. &#013;&#010;&#013;&#010;Remember: The EEC has no concept of fuel pressure. You need to make sure that this is the injector flow rate at the fuel pressure you intend to run, not the advertised injector flow.</description>
     <CATEGORYMEM index="0" category="6" />
     <CATEGORYMEM index="1" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x13570" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
