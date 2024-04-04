@@ -9,19 +9,27 @@ Version 2.0 XDFs are now coming! These XDFs will replace the existing beta versi
 
 -Full control of the Tip-In spark retard system.
 
+
 -Further Access to HEGO related settings, including Jumpback, Ramp and Transport Delay Multipliers enabling further calibration of the factory narrowband.
+
 
 -Access to the Anti-Overheat system configuration, used to disable cylinders when the cylinder head is criticlly overheated.
 
+
 -Further access to torque management including scalers for configuring the traction control system and configuring spark retard and cylinder cutting.
+
 
 -Access to further idle settings, like base DEBYMA tables and DEBYMA correction for idle speed error + further access to closed loop idle settings like intergrator intensity when engine underspeed / overspeed, etc.
 
+
 -Access to fallback defaults for various sensors, functions for Alpha-N fallback fueling and controls for behaviour under failure condtions.
+
 
 -Access to settings for the EGR and canister purge system.
 
+
 -Further control of the BTR automatic transmission.
+
 
 ## Navigating this Repo
 This Repo contains various files and information relating to the above mentioned vehicles and their EEC ECUs. This includes definition files, Disassembly listings with various levels of commenting, ADX files for logging the EECs via a Moates QH (should you own one) and any other related information.
