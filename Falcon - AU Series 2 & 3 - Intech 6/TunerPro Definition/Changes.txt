@@ -75,3 +75,7 @@ Version 1.1
 -Deleted Disable IAC flag as it was actually a flag for the Security System
 -Tweaked names of some items to better reflect there purpose
 -Thank you to Ronald Polzin & Kyle Hald from (Facebook) J3 chip users for the first official bug report!
+
+Version 1.11
+-Added Debyma Desired Tables (Base Deyma = Base Desired Idle Air Mass)
+-Added Scalers for Desired Debyma Tables
