@@ -1,0 +1,12 @@
+Version 1.0
+
+-Derrived from Version with no change logging
+
+Version 1.1
+
+-Built from Version v1.0 which was first to have change logging
+
+-Corrected the Minimum IMRC AM tables to there actual purpose, Minimum Knock Noise to Validate
+-Fixed issue with Spark Tables Being Unsigned
+-Tweaked names of some items to better reflect there purpose
+-Thank you to Ronald Polzin & Kyle Hald from (Facebook) J3 chip users for the first official bug report!

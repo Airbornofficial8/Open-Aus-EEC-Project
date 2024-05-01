@@ -1,4 +1,0 @@
-This Definition is still in very early development. It has been loosly based on the NGIC9 Definition.
-Use caution if attempting to tune a vehicle with this file, it may contain issues.
-
-This file was based on Version 0.22 of the NGIC9 Definition which is not available.

@@ -66,3 +66,12 @@ Version 0.50
 Version 0.51
 
 -Polish up for first upload to GitHub Repo. Some Name and Description cleanup.
+
+Version 1.1
+
+-Built from Version 0.51 which became v1.0
+-Corrected the Minimum IMRC AM tables to there actual purpose, Minimum Knock Noise to Validate
+-Fixed issue with Spark Tables Being Unsigned
+-Deleted Disable IAC flag as it was actually a flag for the Security System
+-Tweaked names of some items to better reflect there purpose
+-Thank you to Ronald Polzin & Kyle Hald from (Facebook) J3 chip users for the first official bug report!
