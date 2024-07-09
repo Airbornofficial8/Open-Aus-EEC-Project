@@ -84,3 +84,10 @@ Version 1.12
 -Fixed the Base Volumetric Efficency Rows Scaler being incorrect (Was incorrectly set to the map scaler, scaler is actually MAPOPE)
 -Tweaked Description of the Base Volumetric Efficency and Throttle Delta Pressure Tables to better reflect there purpose.
 -Fixed a few fuel functions to be named, scaled and descripted correctly. Mainly functions relating to CL/OL switching logic.
+
+Version 1.2
+-The long awaited Boost Compatability Update
+-Range of New Patch Code finally added, including soft and hard cut spark RPM limiting, disable Closed Loop Fuel, VE scales with MAP and more
+-New Scalers and Functions Added, Including Features for Tip-In Detonation Control
+-Range of Fixes to existing features in the definition, including a host of changes to the scalers of various tables which were previously wrong
+-Other Misc Improvements
