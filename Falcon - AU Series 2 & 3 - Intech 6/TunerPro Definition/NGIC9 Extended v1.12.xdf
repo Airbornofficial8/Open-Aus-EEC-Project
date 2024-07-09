@@ -1,4 +1,4 @@
-<!-- Written 05/02/2024 14:25:37 -->
+<!-- Written 05/07/2024 13:26:53 -->
 <XDFFORMAT version="1.80">
   <XDFHEADER>
     <flags>0x1</flags>
@@ -3412,6 +3412,31 @@
       </MATH>
     </XDFAXIS>
   </XDFFUNCTION>
+  <XDFFUNCTION uniqueid="0x70BC" flags="0x0">
+    <title>Injector Timing Mul vs ECT</title>
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedaddress="0x13DB2" mmedelementsizebits="8" mmedcolcount="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>8</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedaddress="0x13DB3" mmedelementsizebits="8" mmedcolcount="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>8</indexcount>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFFUNCTION>
   <XDFFUNCTION uniqueid="0x2EE" flags="0x0">
     <title>O2 Sensor Scaler for RPM</title>
     <description>Scaler for RPM used in O2 related tables.</description>
@@ -5932,7 +5957,7 @@
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1EB6">
     <title>RPM &gt; This and No VSS = Code 500</title>
-    <description>If RPM exceeds this value &amp; the VSS sensor is not responding Code 500 will set.</description>
+    <description>If RPM exceeds this value &amp; the VSS sensor is not responding Code 500 will set.&#013;&#010;&#013;&#010;Edit this when you are setting code 500 due to a high stall converter.</description>
     <CATEGORYMEM index="0" category="6" />
     <CATEGORYMEM index="1" category="70" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x120E0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
