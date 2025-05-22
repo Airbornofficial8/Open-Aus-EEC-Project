@@ -1,8 +1,8 @@
-<!-- Written 05/21/2025 15:29:15 -->
+<!-- Written 05/22/2025 10:52:40 -->
 <XDFFORMAT version="1.80">
   <XDFHEADER>
     <flags>0x1</flags>
-    <fileversion>Alpha</fileversion>
+    <fileversion>v1.0 Alph</fileversion>
     <deftitle>3DAC Extended</deftitle>
     <description>Extended Definition for 3DAC.&#013;&#010;Patches must be applied first before XDF can be used as intended.</description>
     <author>Robert Horton</author>
@@ -10,7 +10,57 @@
     <DEFAULTS datasizeinbits="8" sigdigits="2" outputtype="1" signed="0" lsbfirst="1" float="0" />
     <REGION type="0xFFFFFFFF" startaddress="0x0" size="0x40000" regioncolor="0x0" regionflags="0x0" name="Binary File" desc="This region describes the bin file edited by this XDF" />
     <CATEGORY index="0x0" name="APPLY PATCHES FIRST!" />
-    <CATEGORY index="0x1" name="Sensors and Defaults" />
+    <CATEGORY index="0x1" name="Basic Setup / Sensors / Defaults" />
+    <CATEGORY index="0x2" name="Airflow - VE" />
+    <CATEGORY index="0x3" name="Airflow - MAF" />
+    <CATEGORY index="0x4" name="Emmisions" />
+    <CATEGORY index="0x5" name="Idle Control" />
+    <CATEGORY index="0x6" name="Fueling" />
+    <CATEGORY index="0x7" name="Spark Timing" />
+    <CATEGORY index="0x8" name="Torque Management" />
+    <CATEGORY index="0x9" name="Transmission" />
+    <CATEGORY index="0xA" name="Cooling" />
+    <CATEGORY index="0xB" name="Other" />
+    <CATEGORY index="0x13" name="Engine Settings" />
+    <CATEGORY index="0x14" name="Fault Management" />
+    <CATEGORY index="0x15" name="Sensor Defaults / Limp Mode" />
+    <CATEGORY index="0x16" name="Sensor Calibration" />
+    <CATEGORY index="0x17" name="Table Scalars" />
+    <CATEGORY index="0x18" name="Security" />
+    <CATEGORY index="0x1D" name="General Mass Airflow" />
+    <CATEGORY index="0x1E" name="Failure Mode / Fallback" />
+    <CATEGORY index="0x1F" name="Load Calculation" />
+    <CATEGORY index="0x27" name="General Volumetric Efficency" />
+    <CATEGORY index="0x28" name="Normalised Load Calculation" />
+    <CATEGORY index="0x3B" name="Desired Idle Speed" />
+    <CATEGORY index="0x3C" name="Desired Idle Airflow" />
+    <CATEGORY index="0x3D" name="Closed Loop Idle Control" />
+    <CATEGORY index="0x3E" name="Idle Ignition Timing" />
+    <CATEGORY index="0x3F" name="Dashpot / Rev Hang" />
+    <CATEGORY index="0x45" name="Injector Setup" />
+    <CATEGORY index="0x46" name="Desired Air Fuel Ratio" />
+    <CATEGORY index="0x47" name="Transient Fuel / Wall Wetting" />
+    <CATEGORY index="0x48" name="Acceleration Enrichment" />
+    <CATEGORY index="0x49" name="HEGO Setup" />
+    <CATEGORY index="0x4A" name="Short Term Fuel Trim" />
+    <CATEGORY index="0x4B" name="Long Term Fuel Trim" />
+    <CATEGORY index="0x4F" name="Base Spark Timing" />
+    <CATEGORY index="0x50" name="Borderline Knock Timing" />
+    <CATEGORY index="0x51" name="Maximum Brake Torque Timing" />
+    <CATEGORY index="0x52" name="Additional Timing Settings" />
+    <CATEGORY index="0x59" name="Torque Management General" />
+    <CATEGORY index="0x5A" name="Estimated Torque" />
+    <CATEGORY index="0x5B" name="Torque Limiting" />
+    <CATEGORY index="0x63" name="Transmission General" />
+    <CATEGORY index="0x64" name="Shift Points" />
+    <CATEGORY index="0x65" name="Base Line Pressure" />
+    <CATEGORY index="0x66" name="Shifting Pressure" />
+    <CATEGORY index="0x67" name="Desired Shift Time" />
+    <CATEGORY index="0x68" name="Solenoid Corrections" />
+    <CATEGORY index="0x6D" name="Desired Temperature and Thresholds" />
+    <CATEGORY index="0x6E" name="Transmission Thermal Management" />
+    <CATEGORY index="0x6F" name="High Speed High Load" />
+    <CATEGORY index="0x77" name="Engine Limits" />
   </XDFHEADER>
   <XDFPATCH uniqueid="0x5CDF">
     <title>Step 1. Enhanced MAP Sensor Configuration</title>
@@ -37,6 +87,8 @@
   <XDFFUNCTION uniqueid="0x4034" flags="0x0">
     <title>MAP Sensor Slope / Conversion</title>
     <description>This is the conversion of the MAP sensor fitted. Values should already be correct for a stock Frequency based map sensor. May require tweaking for aftermarket Voltage to Frequency converters.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="23" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8F2C" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Hz</units>
@@ -65,6 +117,7 @@
   <XDFCONSTANT uniqueid="0x76B2">
     <title>MAP Unreliable Low Threshold</title>
     <description>A threshold used across the binary relating to MAP. Also used in logic for determerning faulty MAP alongside some other checks.</description>
+    <CATEGORYMEM index="0" category="2" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x911E" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>inHG</units>
     <datatype>0</datatype>
@@ -77,6 +130,8 @@
   <XDFFUNCTION uniqueid="0x5240" flags="0x0">
     <title>ECT / ACT Sensor Transfer</title>
     <description>Slope for converting Voltage from the ACT and ECT sensors into a temperature.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="23" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8EDC" mmedelementsizebits="16" mmedcolcount="10" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Volts</units>
@@ -107,6 +162,8 @@
   <XDFTABLE uniqueid="0x1828" flags="0x0">
     <title>Desired Lambda - N vs MAP</title>
     <description>The Desired Lambda based on RPM and MAP. This table would have used Normalised Load before patching.&#013;&#010;&#013;&#010;The lowest of 3 different lambda tables is the value that is used for final desired LAMBSE in Open Loop.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="71" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>12</indexcount>
@@ -143,6 +200,8 @@
   <XDFTABLE uniqueid="0x719E" flags="0x0">
     <title>Desired Lambda - Temperature vs MAP</title>
     <description>The Desired Lambda based on ECT and MAP. This table would have used Normalised Load before patching.&#013;&#010;&#013;&#010;The lowest of 3 different lambda tables is the value that is used for final desired LAMBSE in Open Loop.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="71" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>10</indexcount>
@@ -179,6 +238,8 @@
   <XDFTABLE uniqueid="0x3ED5" flags="0x0">
     <title>Desired Lambda - Startup</title>
     <description>The Desired Lambda for Startup, this table acts as a sort of maximum lambda vs engine run time and ECT.&#013;&#010;&#013;&#010;The lowest of 3 different lambda tables is the value that is used for final desired LAMBSE in Open Loop.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="71" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>10</indexcount>
@@ -215,6 +276,8 @@
   <XDFTABLE uniqueid="0x117" flags="0x0">
     <title>Normal Load Throttle Pressure Loss Correction</title>
     <description>Used by Normal Load to Account for Pressure Effects over the Throttle, which accounts for ambient pressure.&#013;&#010;&#013;&#010;Effectivly a Normal Load adder vs MAP and TP.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <CATEGORYMEM index="1" category="41" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>5</indexcount>
@@ -251,6 +314,8 @@
   <XDFTABLE uniqueid="0x7046" flags="0x0">
     <title>Startup Idle Air Multiplier</title>
     <description>Mutliplies Desired Idle Air based on Runtime and ECT.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="61" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>7</indexcount>
@@ -287,6 +352,8 @@
   <XDFTABLE uniqueid="0x2B59" flags="0x0">
     <title>Volumetric Efficency vs MAP and RPM</title>
     <description>The Main VE table based on RPM and MAP. Tune this to acheive the Desired Lambda values.&#013;&#010;&#013;&#010;The Desired Lambda - N vs MAP table can be used to provide additional fueling when this table runs out of range.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <CATEGORYMEM index="1" category="40" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>12</indexcount>
@@ -323,6 +390,8 @@
   <XDFTABLE uniqueid="0x5AFD" flags="0x0">
     <title>Transient Fuel Puddle Transfer Constant</title>
     <description>The expected amount of fuel transfered to the manifold puddle expressed as a constant.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="72" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>10</indexcount>
@@ -359,6 +428,8 @@
   <XDFTABLE uniqueid="0xDD9" flags="0x0">
     <title>Transient Fuel Puddle Time Constant</title>
     <description>The expected amount of time that fuel is trapped in the manifold puddle expressed as a constant.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="72" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>10</indexcount>
@@ -395,6 +466,8 @@
   <XDFTABLE uniqueid="0x6B0D" flags="0x0">
     <title>Lean Cruise Desired LAMBSE</title>
     <description>The Desired Lambda of the Lean Cruise System.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="71" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>12</indexcount>
@@ -431,6 +504,8 @@
   <XDFTABLE uniqueid="0x3E5D" flags="0x0">
     <title>HEGO Delay</title>
     <description>The expected time delay before an exhaust pulse reaches the EGO sensor in PIPs.&#013;&#010;&#013;&#010;Effectively a constant of Exhaust Pulse Speed.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="74" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>4</indexcount>
@@ -467,6 +542,8 @@
   <XDFTABLE uniqueid="0x2EFB" flags="0x0">
     <title>Acceleration Enrichment</title>
     <description>This table provides an Accel Enrichment constant used to determine the required additional fuel for AE.&#013;&#010;&#013;&#010;Seperate from the Transient Fuel Logic.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="73" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>8</indexcount>
@@ -495,7 +572,7 @@
       <min>0.000000</min>
       <max>255.000000</max>
       <outputtype>1</outputtype>
-      <MATH equation="X">
+      <MATH equation="X/16">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -503,6 +580,8 @@
   <XDFTABLE uniqueid="0x4C9E" flags="0x0">
     <title>LTFT Control Table</title>
     <description>Positive values determine the time delay that Normal Load and RPM must remain in a cell to commence learning.&#013;&#010;&#013;&#010;Negative values act as coordinates to point to another cell when LTFT is looking up a correction value.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>12</indexcount>
@@ -536,45 +615,11 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x5A76" flags="0x0">
-    <title>Max Brake Torque Timing - Alternate / Idle</title>
-    <description>An Alternate MBT table. Possibly Idle Only?</description>
-    <XDFAXIS id="x" uniqueid="0x0">
-      <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
-      <indexcount>12</indexcount>
-      <embedinfo type="2" linkobjid="0x2B28" />
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="y" uniqueid="0x0">
-      <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
-      <indexcount>9</indexcount>
-      <embedinfo type="2" linkobjid="0x48DE" />
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="z">
-      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9CE0" mmedelementsizebits="8" mmedrowcount="9" mmedcolcount="12" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <decimalpl>2</decimalpl>
-      <min>0.000000</min>
-      <max>255.000000</max>
-      <outputtype>1</outputtype>
-      <MATH equation="X/4">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-  </XDFTABLE>
   <XDFTABLE uniqueid="0x1B64" flags="0x0">
-    <title>Borderline Knock</title>
+    <title>Base Borderline Knock</title>
     <description>This table provides the Borderline Knock values. Above this timing knock is expected.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="81" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>12</indexcount>
@@ -611,6 +656,8 @@
   <XDFTABLE uniqueid="0x18F7" flags="0x0">
     <title>Max Brake Torque Timing</title>
     <description>Provides the most ideal timing advance that will net the most torque output.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="82" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>12</indexcount>
@@ -644,9 +691,49 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
+  <XDFTABLE uniqueid="0x5A76" flags="0x0">
+    <title>Max Brake Torque Timing - Alternate / Idle</title>
+    <description>An Alternate MBT table. Possibly Idle Only?</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="82" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>12</indexcount>
+      <embedinfo type="2" linkobjid="0x2B28" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>9</indexcount>
+      <embedinfo type="2" linkobjid="0x48DE" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9CE0" mmedelementsizebits="8" mmedrowcount="9" mmedcolcount="12" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>2</decimalpl>
+      <min>0.000000</min>
+      <max>255.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X/4">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
   <XDFTABLE uniqueid="0x728A" flags="0x0">
     <title>Timing IAT Correction Mutliplier</title>
     <description>Mutliplier for the Degree of Timing per Degrees F above or below threshold for ACT timing adjustment.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="81" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>12</indexcount>
@@ -683,6 +770,8 @@
   <XDFTABLE uniqueid="0x6D71" flags="0x0">
     <title>Timing ECT Correction Mutliplier</title>
     <description>Mutliplier for the Degree of Timing per Degrees F above or below threshold for ECT timing adjustment.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="81" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedelementsizebits="8" mmedmajorstridebits="-32" mmedminorstridebits="0" />
       <indexcount>12</indexcount>
@@ -719,6 +808,8 @@
   <XDFFUNCTION uniqueid="0x63A5" flags="0x0">
     <title>MBT Multiplier vs ECT/ACT Blend</title>
     <description>Provides a thermal multiplier to MBT based on a blend of ACT and ECT.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="82" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9C5A" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>ECT/ACT</units>
@@ -748,6 +839,8 @@
   <XDFFUNCTION uniqueid="0x217B" flags="0x0">
     <title>Retard per Degrees F ECT Multiplier Correction</title>
     <description>A multiplier applied to the result of the ECT - Retard per Degree F Multiplier Correction table lookup. This is to prevent pulling too much timing due to ECT at lower temperatures.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="81" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9CD4" mmedelementsizebits="8" mmedcolcount="6" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <indexcount>6</indexcount>
@@ -773,39 +866,11 @@
       </MATH>
     </XDFAXIS>
   </XDFFUNCTION>
-  <XDFFUNCTION uniqueid="0x1BE6" flags="0x0">
-    <title>Final Spark Adder for WOT</title>
-    <description>Spark added to the Final Base Advance derived from the main spark tables at WOT.&#013;&#010;&#013;&#010;Scales with RPM. Use this function to provide additional advance in WOT mode.</description>
-    <XDFAXIS id="x" uniqueid="0x0">
-      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9C76" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
-      <units>Engine RPM</units>
-      <indexcount>7</indexcount>
-      <max>0.000000</max>
-      <embedinfo type="1" />
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <MATH equation="X/4">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="y" uniqueid="0x0">
-      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9C78" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
-      <units>Extra Advance</units>
-      <indexcount>7</indexcount>
-      <max>0.000000</max>
-      <embedinfo type="1" />
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <MATH equation="X/4">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-  </XDFFUNCTION>
   <XDFCONSTANT uniqueid="0x4F1B">
     <title>ACT Timing Retard Threshold</title>
     <description>(Experimental) in this ECU this is the static timing retard threshold. Later ECUs use a function to compensate for EGR flow.&#013;&#010;&#013;&#010;Above this ACT timing is retarded, below this threshold its advanced.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9BCF" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Degrees C</units>
     <datatype>0</datatype>
@@ -818,6 +883,8 @@
   <XDFCONSTANT uniqueid="0x563C">
     <title>ECT Timing Retard Threshold</title>
     <description>(Experimental) in this ECU this is the static timing retard threshold. Later ECUs use a function to compensate for EGR flow.&#013;&#010;&#013;&#010;Above this ECT timing is retarded, below this threshold its advanced.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9BD0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Degrees C</units>
     <datatype>0</datatype>
@@ -827,85 +894,11 @@
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x6C2B">
-    <title>Spark Upper Clip</title>
-    <description>The Upper Spark Clip.&#013;&#010;&#013;&#010;Its not advisable to change this, as this is the mechanical limit of the Electronic Distrbuter Cap.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9BC7" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Degrees</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/4">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x66FD">
-    <title>Spark Lower Clip</title>
-    <description>The Lower Spark Clip.&#013;&#010;&#013;&#010;Its not advisable to change this, as this is the mechanical limit of the Electronic Distrbuter Cap.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9BC6" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Degrees</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/4">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x3E88">
-    <title>Global Spark Adder</title>
-    <description>Adds a fixed amount of spark advance after all adders and multipliers are applied.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9BAA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Degrees</units>
-    <rangehigh>0.000000</rangehigh>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/4">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x5EF0">
-    <title>Global Spark Multiplier</title>
-    <description>Multiplies the value of final spark advance, after all other adders and corrections have run.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9BC8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>X</units>
-    <rangehigh>0.000000</rangehigh>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/128">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x7366">
-    <title>Lowest Allowed Lambda (CL)</title>
-    <description>The lowest allowed LAMBSE in Closed Loop. Open Loop Lambse Ignores this.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Lambda</units>
-    <decimalpl>3</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/32768">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1334">
-    <title>Highest Allowed Lambda (CL)</title>
-    <description>The highest allowed LAMBSE in Closed Loop. Open Loop Lambse Ignores this.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91CA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Lambda</units>
-    <decimalpl>3</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/32768">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
   <XDFFUNCTION uniqueid="0x2486" flags="0x0">
     <title>HEGO Jumpback Multiplier without Bias</title>
     <description>FN342 - When a HEGO switch occurs during closed loop fuelling this is used as a multiplier of the &apos;Peak to Peak Amplitude&apos; (aka PTPAMP) value to determine the amount the desired A/F ratio should jumpback towards the averaged A/F ratio by.&#013;&#010;&#013;&#010;Used when either of the two following conditions are met;&#013;&#010;i) the HEGO is reporting lean and the &apos;Bias&apos; is lean (a positive value) or zero&#013;&#010;ii) the HEGO is reporting rich and the &apos;Bias&apos; is rich (a negative value)&#013;&#010;otherwise the &apos;HEGO Jumpback Multiplier with Bias&apos; (aka FN344) parameter is used.&#013;&#010;&#013;&#010;Notes:&#013;&#010;1) Larger Bias values result in smaller jumpback values.&#013;&#010;2) Do not enter multiplier values greater than &apos;1.000&apos;.&#013;&#010;3) Do not alter the top two rows.&#013;&#010;4) The input value of &apos;Bias/Peak to Peak Amplitude&apos; is clamped to a maximum of 0.45 by the eec.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="74" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x98D2" mmedelementsizebits="8" mmedcolcount="7" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>bias/ptpamp</units>
@@ -936,6 +929,8 @@
   <XDFFUNCTION uniqueid="0x429D" flags="0x0">
     <title>HEGO Jumpback Multiplier with Bias</title>
     <description>FN344 - When a HEGO switch occurs during closed loop fuelling this is used as a multiplier of the sum of the &apos;Bias&apos; and &apos;Peak to Peak Amplitude&apos; (aka PTPAMP) values to determine the amount the desired A/F ratio should jumpback towards the averaged A/F ratio by.&#013;&#010;&#013;&#010;Used when either of the two following conditions are met;&#013;&#010;i) the HEGO is reporting lean and the &apos;Bias&apos; is rich (a negative value)&#013;&#010;ii) the HEGO is reporting rich and the &apos;Bias&apos; is lean (a positive value) or zero&#013;&#010;otherwise the &apos;HEGO Jumpback Multiplier without Bias&apos; (aka FN342) parameter is used.&#013;&#010;&#013;&#010;Notes:&#013;&#010;1) Larger Bias values result in smaller jumpback values.&#013;&#010;2) Do not enter multiplier values greater than &apos;1.000&apos;.&#013;&#010;3) The input value of &apos;Bias/Peak to Peak Amplitude&apos; is clamped to a maximum of 0.45 by the eec.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="74" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x98E0" mmedelementsizebits="8" mmedcolcount="7" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>bias/ptpamp</units>
@@ -966,6 +961,8 @@
   <XDFFUNCTION uniqueid="0x59A3" vislevel="7" flags="0x0">
     <title>Max MAP for CL</title>
     <description>Defines the Maximum allowable MAP before going into open Loop due to high load.&#013;&#010;&#013;&#010;Note that Open Loop can also be triggered by the TP for Power Enrichment Threshold.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8E3A" mmedelementsizebits="8" mmedcolcount="6" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>RPM Byte</units>
@@ -996,6 +993,8 @@
   <XDFFUNCTION uniqueid="0x7ED5" flags="0x0">
     <title>HEGO Ramp Rate Multiplier</title>
     <description>FN339 - During closed loop fuelling this table determines the rate at which the desired A/F ratio ramps richer or leaner towards the HEGO switch point. As the values in this table are very important for getting the fast and slow ramp rates correct when a Bias is used it should not normally be altered.&#013;&#010;&#013;&#010;The input value of &apos;Bias/Peak to Peak Amplitude&apos; is clamped to a maximum of 0.45 by the eec.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="74" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8E17" mmedelementsizebits="8" mmedcolcount="3" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>bias/ptpamp</units>
@@ -1023,9 +1022,43 @@
       </MATH>
     </XDFAXIS>
   </XDFFUNCTION>
+  <XDFFUNCTION uniqueid="0x2D88" flags="0x0">
+    <title>Minimum TP for TmapDT Calculation vs BP Corrected Airflow</title>
+    <description>Input is Airmass / BackPressure. Result is TP volts. This function seems to set the minimum throttle position to run the Delta Pressure calculation. When TP volts are lower than the values on the right the function that checks TmapDT is skipped.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <CATEGORYMEM index="1" category="41" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x934C" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="32" mmedminorstridebits="0" />
+      <units>MAPOPE</units>
+      <indexcount>6</indexcount>
+      <max>0.000000</max>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/128">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x934E" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="32" mmedminorstridebits="0" />
+      <units>TPrel</units>
+      <indexcount>6</indexcount>
+      <max>0.000000</max>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/12800">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFFUNCTION>
   <XDFFUNCTION uniqueid="0x11D8" flags="0x0">
     <title>Airmass Flow to Backpressure / eMAP</title>
     <description>Converts the Calculated Value of Airmass Flow to Manifold Air Presure over Back Pressure, which is used as normalised load for fueling.&#013;&#010;&#013;&#010;You shouldn&apos;t need to touch this.&#013;&#010;&#013;&#010;lbs/min to inHG</description>
+    <CATEGORYMEM index="0" category="3" />
+    <CATEGORYMEM index="1" category="41" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96E0" mmedelementsizebits="16" mmedcolcount="11" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Airmass Flow</units>
@@ -1054,6 +1087,8 @@
   <XDFFUNCTION uniqueid="0x455B" flags="0x0">
     <title>VE Multiplier vs ECT</title>
     <description>Tweaks Base VE against Engine Coolant Temperature.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <CATEGORYMEM index="1" category="40" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9716" mmedelementsizebits="8" mmedcolcount="5" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>deg C</units>
@@ -1086,6 +1121,8 @@
   <XDFFUNCTION uniqueid="0x4F86" flags="0x0">
     <title>VE Multiplier vs ACT</title>
     <description>Tweaks Base VE against Air Charge Temperature.&#013;&#010;&#013;&#010;Used as a crude method of factoring for Ambient Air Density in the VE Model.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <CATEGORYMEM index="1" category="40" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x970C" mmedelementsizebits="8" mmedcolcount="5" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>deg C</units>
@@ -1118,6 +1155,8 @@
   <XDFFUNCTION uniqueid="0x55B" flags="0x0">
     <title>[E Series] Min MAP for CL - Drive</title>
     <description>The lowest MAP that CL is allowed to operate. Normally calibrated to prevent CL leanout on Decel.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedaddress="0x8E46" mmedelementsizebits="8" mmedcolcount="11" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>RPM</units>
@@ -1146,6 +1185,8 @@
   <XDFFUNCTION uniqueid="0x2F9A" flags="0x0">
     <title>[E Series] Min MAP for CL - Netural</title>
     <description>The lowest MAP that CL is allowed to operate. Normally calibrated to prevent CL leanout on Decel.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedaddress="0x8E5C" mmedelementsizebits="8" mmedcolcount="11" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>RPM</units>
@@ -1174,6 +1215,8 @@
   <XDFFUNCTION uniqueid="0x6085" flags="0x0">
     <title>Minimum MAP for CL vs Vehicle Speed</title>
     <description>Legacy Function based on V8 strats, defines a MAP value to trigger open loop based on vehicle speed.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8E72" mmedelementsizebits="8" mmedcolcount="7" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>VSBAR</units>
@@ -1201,9 +1244,41 @@
       </MATH>
     </XDFAXIS>
   </XDFFUNCTION>
+  <XDFCONSTANT uniqueid="0x7366">
+    <title>Lowest Allowed Lambda (CL)</title>
+    <description>The lowest allowed LAMBSE in Closed Loop. Open Loop Lambse Ignores this.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Lambda</units>
+    <decimalpl>3</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/32768">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x1334">
+    <title>Highest Allowed Lambda (CL)</title>
+    <description>The highest allowed LAMBSE in Closed Loop. Open Loop Lambse Ignores this.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91CA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Lambda</units>
+    <decimalpl>3</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/32768">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
   <XDFFUNCTION uniqueid="0x6EB5" flags="0x0">
     <title>[E Series] Base Debyma</title>
     <description>The Base of Debyma, used in the idle air calculation vs RPM.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="61" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8E80" mmedelementsizebits="16" mmedcolcount="8" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Idle RPM</units>
@@ -1233,6 +1308,8 @@
   <XDFFUNCTION uniqueid="0x16FA" flags="0x0">
     <title>[E Series] Base Debyma Closed Loop Idle Control</title>
     <description>The Base of Debyma, used in the idle air calculation vs RPM.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="61" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8EA0" mmedelementsizebits="16" mmedcolcount="8" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Idle RPM</units>
@@ -1261,6 +1338,9 @@
   </XDFFUNCTION>
   <XDFFUNCTION uniqueid="0x5417" flags="0x0">
     <title>[E Series] Base HEGO Gain vs RPM</title>
+    <description>In Later EEC This is a Table.&#013;&#010;&#013;&#010;Defines the &quot;Gain&quot; of the Hego Sensor. Higher values make LAMBSE Ramp Faster in Closed Loop. Gain Acts as the Initial Value that the &quot;Ramp Rate Mutiplier&quot; affects in order to determine final LAMBSE ramping speed.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="74" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x921E" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>RPM</units>
@@ -1288,7 +1368,10 @@
     </XDFAXIS>
   </XDFFUNCTION>
   <XDFFUNCTION uniqueid="0x7294" flags="0x0">
-    <title>[E Series] Base HEGO Gain Adjustment vs MAPPA</title>
+    <title>[E Series] Base HEGO Gain Adjustment vs VE</title>
+    <description>In Later EEC This is a Table. This is an adjustment to the RPM based main value dependent on the current VE of the engine.&#013;&#010;&#013;&#010;Defines the &quot;Gain&quot; of the Hego Sensor. Higher values make LAMBSE Ramp Faster in Closed Loop. Gain Acts as the Initial Value that the &quot;Ramp Rate Mutiplier&quot; affects in order to determine final LAMBSE ramping speed.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="74" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x920A" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>MAPPA</units>
@@ -1317,6 +1400,8 @@
   <XDFFUNCTION uniqueid="0x4692" flags="0x0">
     <title>ACRT Sensor Scaling</title>
     <description>The Scaling of the AC Return Temperature Sensor.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="23" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8F04" mmedelementsizebits="16" mmedcolcount="10" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Volts</units>
@@ -1347,6 +1432,8 @@
   <XDFFUNCTION uniqueid="0x978" flags="0x0">
     <title>Fuel Startup Table Scaler for ATMR1</title>
     <description>Scaler used for tables relating to engine run time.&#013;&#010;&#013;&#010;Used by:&#013;&#010;Startup Fuel Table</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8F44" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Seconds</units>
@@ -1379,6 +1466,8 @@
   <XDFFUNCTION uniqueid="0x350A" flags="0x0">
     <title>Table Scaler for Delta TP</title>
     <description>Scaler used for tables relating to Change in Throttle Position.&#013;&#010;&#013;&#010;Used by:&#013;&#010;AE Table</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8F60" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Units</units>
@@ -1411,6 +1500,8 @@
   <XDFFUNCTION uniqueid="0x409A" flags="0x0">
     <title>Table Scaler for ECT</title>
     <description>A table Scaler for Engine Coolant Temperature.&#013;&#010;&#013;&#010;Used by:&#013;&#010;Idle Air Mutliplier Table</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x8F74" mmedelementsizebits="16" mmedcolcount="8" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>ECT</units>
@@ -1440,6 +1531,8 @@
   <XDFFUNCTION uniqueid="0x3058" flags="0x0">
     <title>Table Scaler for VE MAPOPE</title>
     <description>Table Scaler for Normalised Load. Used in VE related tables / Calcs.&#013;&#010;&#013;&#010;Used By:&#013;&#010;VE Table&#013;&#010;LTFT (Config Table and KAM Memory Table)</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8F94" mmedelementsizebits="16" mmedcolcount="12" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>in/HG</units>
@@ -1471,6 +1564,8 @@
   <XDFFUNCTION uniqueid="0x47B2" flags="0x0">
     <title>Fuel Table Scaler for ECT/ACT</title>
     <description>Main ECT over ACT table scaler. Used for fueling related tables.&#013;&#010;&#013;&#010;Used By:&#013;&#010;Startup Fuel Table&#013;&#010;Base Fuel Table</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x8FC4" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>deg C</units>
@@ -1502,6 +1597,8 @@
   <XDFFUNCTION uniqueid="0x2B28" flags="0x0">
     <title>Table Scaler for RPM</title>
     <description>Table Scaler for RPM. EA-ED Does not have any other RPM Scalar.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8FDC" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>RPM</units>
@@ -1533,6 +1630,8 @@
   <XDFFUNCTION uniqueid="0x17F1" flags="0x0">
     <title>Table Scaler for MAPOPE (BFT / General)</title>
     <description>Table Scaler for MAPOPE. This is the main table scaler for MAPOPE, however the N over Load Fuel table uses a seperate scalar.&#013;&#010;&#013;&#010;Used by:&#013;&#010;Base Fuel Table&#013;&#010;Lean Cruise / MFA Table</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8FF8" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>in/HG</units>
@@ -1564,6 +1663,8 @@
   <XDFFUNCTION uniqueid="0x8C4" flags="0x0">
     <title>Table Scaler for MAPOPE (N over Load)</title>
     <description>Table Scaler for MAPOPE. Used as a dedicated Scalar for the N over Load Desired LAMBSE Table.&#013;&#010;&#013;&#010;Used by:&#013;&#010;N over Load Fuel</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9014" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>in/HG</units>
@@ -1595,6 +1696,8 @@
   <XDFFUNCTION uniqueid="0x4981" vislevel="1" flags="0x0">
     <title>Table Scaler for TB Pressure Drop - MAP</title>
     <description>MAP Scalar for TB Press Table.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9030" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>in Hg</units>
@@ -1626,6 +1729,8 @@
   <XDFFUNCTION uniqueid="0x556" flags="0x0">
     <title>Table Scaler for TB Throttle Pos</title>
     <description>Scaler for Throttle Blade Position, which is a calculated value used when determining Engine Back Pressure.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9044" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>TPrel</units>
@@ -1657,6 +1762,8 @@
   <XDFFUNCTION uniqueid="0x48DE" vislevel="1" flags="0x0">
     <title>Table Scaler for MAP</title>
     <description>Main table scaler for Manifold Air Pressure. Used for almost all tables taking Manifold Air Pressure as an input. Except for O2 sensor and Knock related tables, which have there own seperate scalers for MAP.&#013;&#010;&#013;&#010;When the Use MAP for VE patch is applied, this will also scale the VE table. KEEP THIS IN MIND after applying afformentioned patch.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9058" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>in Hg</units>
@@ -1688,6 +1795,8 @@
   <XDFFUNCTION uniqueid="0x6F03" flags="0x0">
     <title>Failed TPS - MAP Based Estimate</title>
     <description>Provides a substitute TPrel when the TPS sensor is in a failure state.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="22" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x908C" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>MAP</units>
@@ -1716,6 +1825,8 @@
   <XDFFUNCTION uniqueid="0x3754" flags="0x0">
     <title>Failed MAP - TPS Based Estimate</title>
     <description>Provides a subtitute MAP value based on TPS when the MAP sensor is in a failure state.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="22" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x90A0" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>TPrel</units>
@@ -1741,39 +1852,11 @@
       </MATH>
     </XDFAXIS>
   </XDFFUNCTION>
-  <XDFFUNCTION uniqueid="0x2D88" flags="0x0">
-    <title>Minimum TP for TmapDT Calculation vs BP Corrected Airflow</title>
-    <description>Input is Airmass / BackPressure. Result is TP volts. This function seems to set the minimum throttle position to run the Delta Pressure calculation. When TP volts are lower than the values on the right the function that checks TmapDT is skipped.</description>
-    <XDFAXIS id="x" uniqueid="0x0">
-      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x934C" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="32" mmedminorstridebits="0" />
-      <units>MAPOPE</units>
-      <indexcount>6</indexcount>
-      <max>0.000000</max>
-      <embedinfo type="1" />
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <MATH equation="X/128">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="y" uniqueid="0x0">
-      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x934E" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="32" mmedminorstridebits="0" />
-      <units>TPrel</units>
-      <indexcount>6</indexcount>
-      <max>0.000000</max>
-      <embedinfo type="1" />
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <MATH equation="X/12800">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-  </XDFFUNCTION>
   <XDFFUNCTION uniqueid="0x140F" flags="0x0">
     <title>ISC P Gain vs Idle RPM Error</title>
     <description>This is the Proportional Gain of the Closed Loop Idle Control System vs the current Idle Speed Error. You can think of the Gain value as doing the following:&#013;&#010;&#013;&#010;Correction = Desired + (Error x Gain) where Gain is the result of this function.&#013;&#010;&#013;&#010;Tune this like any other PID system. This value will control the rate at which the EEC responds to instant Idle Speed Error using the P component of the PID algorithm.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="62" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x945A" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>RPM Error</units>
@@ -1805,6 +1888,8 @@
   <XDFFUNCTION uniqueid="0x5D0B" flags="0x0">
     <title>Table Scaler for ATMR3</title>
     <description>Engine Runtime Scaler for After Start Idle Air Mul Table.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9476" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>ATMR3</units>
@@ -1832,9 +1917,39 @@
       </MATH>
     </XDFAXIS>
   </XDFFUNCTION>
+  <XDFCONSTANT uniqueid="0x7662">
+    <title>Desired Idle Speed Drive</title>
+    <description>The Desired Idle Speed in Drive.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="60" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/4">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x1E91">
+    <title>Desired Idle Speed Netural</title>
+    <description>The Desired Idle Speed in Netural.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="60" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93CA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/4">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
   <XDFFUNCTION uniqueid="0x41B5" flags="0x0">
     <title>Idle RPM Adder vs ECT</title>
-    <description>Amount of RPM added to the Base Idle RPM vs Engine Coolant Temperature.&#013;&#010;&#013;&#010;Tweak to add Idle RPM when the engine is cold as desired.&#013;&#010;&#013;&#010;</description>
+    <description>Amount of RPM added to the Base Idle RPM vs Engine Coolant Temperature.&#013;&#010;&#013;&#010;Tweak to add Idle RPM when the engine is cold as desired.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="60" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9574" mmedelementsizebits="16" mmedcolcount="10" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>ECT &#176;C</units>
@@ -1865,6 +1980,8 @@
   <XDFFUNCTION uniqueid="0x2367" flags="0x0">
     <title>Idle RPM Adder vs ECT (Startup)</title>
     <description>Idle RPM Added to the Startup Adder vs Engine Coolant Temperature.&#013;&#010;&#013;&#010;Adds Idle RPM on top of the Idle Speed Startup Adder for initial startup vs Engine Coolant Temperature. This Idle Adder and the base startup adder will be applied until the Engine Running Timer exceeds the value in the &quot;Time to Keep Idle ECT/ACT Adder&quot; scaler.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="60" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x959C" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>ECT &#176;C</units>
@@ -1895,6 +2012,8 @@
   <XDFFUNCTION uniqueid="0x2E3" flags="0x0">
     <title>Idle RPM Adder vs ACT</title>
     <description>Similar to Idle RPM Adder vs ECT, adds Idle RPM relative to Air Charge Temperature.&#013;&#010;&#013;&#010;Not used in N9XJ4. Rarely in NGIC9 this is sometimes used to add RPM for outside Air Temperature.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="60" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x8EC0" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Air Charge &#176;C</units>
@@ -1922,9 +2041,25 @@
       </MATH>
     </XDFAXIS>
   </XDFFUNCTION>
+  <XDFCONSTANT uniqueid="0x5B27">
+    <title>After Start Idle Speed Adder</title>
+    <description>This Idle Speed Adder is Used after start.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="60" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93CE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/4">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x49F6">
     <title>Time to Keep Idle Startup Adders</title>
     <description>Time which any active Startup RPM adders are kept for after engine start.&#013;&#010;&#013;&#010;Change to reduce or increase the amount of time the Idle RPM adder for Startup is enabled for after the engine starts.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="60" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9400" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Seconds After Start</units>
     <rangehigh>0.000000</rangehigh>
@@ -1938,6 +2073,8 @@
   <XDFCONSTANT uniqueid="0x65DF">
     <title>Adaptive Learning Time Requirements Must be Met</title>
     <description>The required amount of time in seconds that temperature requirements must be met before Adaptive Learning will Start Learning.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96C8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Seconds</units>
     <decimalpl>0</decimalpl>
@@ -1951,6 +2088,8 @@
   <XDFCONSTANT uniqueid="0x4774">
     <title>Adaptive Learning LAMBSE Error to Learn</title>
     <description>The required amount of Short Term Fuel Correction to make a Long Term Fuel Correction. Set this up so Long Term Fuel Trimming isn&apos;t constantly updating due to excess HEGO swing.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96CA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>LAMBSE</units>
     <decimalpl>3</decimalpl>
@@ -1964,6 +2103,8 @@
   <XDFCONSTANT uniqueid="0x282B">
     <title>Adaptive Learning Min ECT</title>
     <description>Minimum ECT to allow Adaptive Learning</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x96D6" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>degC?</units>
     <datatype>0</datatype>
@@ -1976,6 +2117,8 @@
   <XDFCONSTANT uniqueid="0x42E1">
     <title>Adaptive Learning Max ECT</title>
     <description>Maximum ECT to allow Adaptive Learning</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x96D7" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>degC?</units>
     <datatype>0</datatype>
@@ -1988,6 +2131,8 @@
   <XDFCONSTANT uniqueid="0x5E96">
     <title>Adaptive Learning Min ACT</title>
     <description>Minimum ACT to allow Adaptive Learning</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x96D8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>degC?</units>
     <datatype>0</datatype>
@@ -2000,6 +2145,8 @@
   <XDFCONSTANT uniqueid="0x77B0">
     <title>Adaptive Learning Max ACT</title>
     <description>Maximum ACT to allow Adaptive Learning</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x96D9" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>degC?</units>
     <datatype>0</datatype>
@@ -2012,6 +2159,8 @@
   <XDFCONSTANT uniqueid="0x6122">
     <title>Adaptive Learning Min Change</title>
     <description>TpSc1_40c3 - Minimum change value for Adaptive Learning</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x96DB" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>x</units>
     <datatype>0</datatype>
@@ -2024,6 +2173,8 @@
   <XDFCONSTANT uniqueid="0x569">
     <title>Adaptive Learning Max Change</title>
     <description>TpSc1_40c4 - Maximum change value for Adaptive Learning</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x96DC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>x</units>
     <datatype>0</datatype>
@@ -2036,6 +2187,8 @@
   <XDFCONSTANT uniqueid="0x5BE0">
     <title>Adaptive Learning Switches to Learn a Learned Cell</title>
     <description>The minimum number of HEGO counts required for adaptive learning to take place when the number of KAM warm ups is greater than the &apos;Adaptive Control Max Warm Up Cycles&apos; value.&#013;&#010;&#013;&#010;This effectivly defines the number of EGO switches before what the EEC considers a well learned LTFT table is updated again</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96DF" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Rich/Lean Switches</units>
     <decimalpl>0</decimalpl>
@@ -2046,9 +2199,25 @@
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x790">
+    <title>Max Permitted Transient Fuel for LTFT</title>
+    <description>If the amount of Transient Fueling exceedes this value LTFT learning is disabled.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96C6" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>uS</units>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X*2">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
   <XDFFUNCTION uniqueid="0x1092" flags="0x0">
     <title>Injector Dead Time - Battery Voltage</title>
     <description>Injector Dead Time is a measure of how long the Injector takes to open when it is powered. The EEC-V rather than storing this as a single value, maps it against battery voltage to compensate for differing charge states.&#013;&#010;&#013;&#010;Edit when changing injectors. Values for this function should be available from your injector Manufacturer. Injector Manufacturers may also only provide a dead time for a single voltage, in which cause just use the same MS dead time for all the Y values.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="70" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9720" mmedelementsizebits="8" mmedcolcount="9" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>vBat</units>
@@ -2079,6 +2248,8 @@
   <XDFFUNCTION uniqueid="0x58E2" flags="0x0">
     <title>Injector Cranking PW Mutliplier vs Time</title>
     <description>Multiplies the Cranking Injector Puslewidth vs the time the engine has been cranking.&#013;&#010;&#013;&#010;Tweak to change how much effect the amount of time cranking has on the Cranking Injector Pulse Width. In factory bins this function is used to disable the injectors for a brief peroid to prevent flooding the engine after about 16 seconds. They are then re-enabled at 50% of the base PW after 32 seconds.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="70" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x98EE" mmedelementsizebits="8" mmedcolcount="5" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>Seconds</units>
@@ -2111,6 +2282,8 @@
   <XDFFUNCTION uniqueid="0x10B1" flags="0x0">
     <title>Injector Cranking PW vs ECT</title>
     <description>Base Injector Pulsewidth vs Engine Coolant Temperature.&#013;&#010;&#013;&#010;Change to alter the base amount of Injector Pulse Width before other adders and multipliers during engine cranking.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="70" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x98F8" mmedelementsizebits="16" mmedcolcount="9" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>ECT &#176;C</units>
@@ -2141,6 +2314,8 @@
   <XDFFUNCTION uniqueid="0x2DCA" flags="0x0">
     <title>Injector Cranking PW Mutliplier vs TPS Voltage</title>
     <description>Multiplies the Cranking Injector Puslewidth vs the current Throttle Position Sensor Voltage.&#013;&#010;&#013;&#010;Tweak to change how much effect the accelerator pedal has on the amount of fuel injected during engine cranking.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="70" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x991C" mmedelementsizebits="16" mmedcolcount="9" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>TP Volts</units>
@@ -2171,6 +2346,8 @@
   <XDFFUNCTION uniqueid="0x3AA" flags="0x0">
     <title>[E Series] Cranking PW Mutli for Aircharge Temperature</title>
     <description>Legacy function not found in Post E Series EEC. This Mutliplies Cranking Pulsewidth for Aircharge Temperature.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="70" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x9940" mmedelementsizebits="8" mmedcolcount="5" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>ACT</units>
@@ -2199,6 +2376,8 @@
   <XDFFUNCTION uniqueid="0x687A" flags="0x0">
     <title>Fuel Table Scaler for ECT - AE Table</title>
     <description>ECT Scalar for the AE Table.&#013;&#010;&#013;&#010;Used By:&#013;&#010;AE Table</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="24" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9994" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>deg C</units>
@@ -2227,21 +2406,11 @@
       </MATH>
     </XDFAXIS>
   </XDFFUNCTION>
-  <XDFCONSTANT uniqueid="0x2518">
-    <title>[E Series] Spark Below Run</title>
-    <description>The spark advance when the engine is below the RPM threshold needed to be considered running.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9168" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Degrees</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/4">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x4332">
     <title>Engine RPM Limit - Main Hard Fuel Cut (In Gear)</title>
     <description>RPM at which all fuel to the engine is cut. In automatic Vehicles this is the In Gear Fuel Cut.</description>
+    <CATEGORYMEM index="0" category="12" />
+    <CATEGORYMEM index="1" category="120" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91CE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>RPM</units>
     <datatype>0</datatype>
@@ -2254,6 +2423,8 @@
   <XDFCONSTANT uniqueid="0x7999">
     <title>Engine RPM Limit - Netural Hard Fuel Cut OR Failed VSS</title>
     <description>This could potentially be the Fuel Cut RPM in Netural (Automatic vehicles only). According to Jason from Ti Performance, this may also be the RPM Limit for VSS Failure.&#013;&#010;&#013;&#010;Either (Or even both) could be correct.</description>
+    <CATEGORYMEM index="0" category="12" />
+    <CATEGORYMEM index="1" category="120" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>RPM</units>
     <rangehigh>0.000000</rangehigh>
@@ -2267,6 +2438,8 @@
   <XDFCONSTANT uniqueid="0x2343">
     <title>Engine RPM Limit - RPM Drop for Fuel Return</title>
     <description>Amount of Engine RPM Drop required before fuel is returned after hitting either Main Hard Fuel Cut or Netural Hard Fuel Cut OR Failed VSS.</description>
+    <CATEGORYMEM index="0" category="12" />
+    <CATEGORYMEM index="1" category="120" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>RPM</units>
     <datatype>0</datatype>
@@ -2279,6 +2452,8 @@
   <XDFCONSTANT uniqueid="0xC27">
     <title>EGO Cold Time?</title>
     <description>Experimental value. Use unknown.&#013;&#010;&#013;&#010;The amount of time the EGO will be ignored regardless of other settings when a cold start is detected.&#013;&#010;&#013;&#010;Think of this as the expected time the EGO will need to warm up from ambient temperature&#013;&#010;&#013;&#010;The Units &quot;Loops&quot; Reffers to how many times the EGO code must be skipped before it will run.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91B2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Loops</units>
     <decimalpl>0</decimalpl>
@@ -2292,6 +2467,8 @@
   <XDFCONSTANT uniqueid="0xD1E">
     <title>ATMR1 CL Delay - Hot Start</title>
     <description>Closed Loop Fueling Delay when the engine is over the Hot Threshold 1.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91BA" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <rangehigh>0.000000</rangehigh>
     <datatype>0</datatype>
@@ -2304,6 +2481,8 @@
   <XDFCONSTANT uniqueid="0x2F99">
     <title>ATMR1 CL Delay - Warm Start</title>
     <description>Sc0904 - Closed Loop Delay when engine is &quot;Warm&quot; (More than Cold, Less than Hot)</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91BB" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <rangehigh>0.000000</rangehigh>
     <datatype>0</datatype>
@@ -2316,6 +2495,8 @@
   <XDFCONSTANT uniqueid="0x5048">
     <title>ATMR1 CL Delay - Cold Start</title>
     <description>Closed Loop Fueling delay when the engine is below the Cold Threshold.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91BC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <rangehigh>0.000000</rangehigh>
     <datatype>0</datatype>
@@ -2328,6 +2509,8 @@
   <XDFCONSTANT uniqueid="0x2C49">
     <title>Time at CT before OL Decel can Begin</title>
     <description>Time that must be spent at CT before Open Loop Deceleration can occur.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91C7" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Seconds</units>
     <decimalpl>1</decimalpl>
@@ -2341,12 +2524,16 @@
   <XDFFLAG uniqueid="0x4FA0">
     <title>Stablise Idle before allowing Idle C/L</title>
     <description>Defines if the Idle effectivly needs to be stable before C/L is allowed at Idle or if C/L will always be allowed during idle.&#013;&#010;&#013;&#010;Clear for the adaptive idle fuel cells to used as soon as the filtered airmass region is entered. Set for the adaptive idle fuel cells to used only when in the filtered airmass region and there are no base idle rpm adders being applied.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="75" />
     <EMBEDDEDDATA mmedaddress="0x96DE" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFFUNCTION uniqueid="0x59C6" flags="0x0">
     <title>OSCMOD Effectiveness Multiplier</title>
     <description>A Mutliplier for OSCMOD to reduce strength at higher pedal positions. Tune to prevent OSCMOD from affecting throttle response above light throttle applications.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="83" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9CA0" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>TPrel</units>
@@ -2376,6 +2563,8 @@
   <XDFFUNCTION uniqueid="0x7474" flags="0x0">
     <title>OSCMOD RPM Rate Subtractor</title>
     <description>The Main Component of OSCMOD. Offsets RPM/s before it is used to form a linear reduction in spark timing.&#013;&#010;&#013;&#010;Serves to prevent excessive timing reduction at high TPrel.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="83" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9CBC" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>TPrel</units>
@@ -2404,18 +2593,128 @@
   <XDFFLAG uniqueid="0x5E67">
     <title>ACRT Fitted</title>
     <description>Defines if an ACRT Sensor is Fitted. &#013;&#010;&#013;&#010;Not Set = ACRT Sensor not Present.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="23" />
     <EMBEDDEDDATA mmedaddress="0x9BF3" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0x633B">
     <title>OSCMOD Enable</title>
     <description>Defines if OSCMOD Logic is Enabled.&#013;&#010;&#013;&#010;Not Set = OSCMOD Disabled</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="83" />
     <EMBEDDEDDATA mmedaddress="0x9BD6" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
+  <XDFFUNCTION uniqueid="0x1BE6" flags="0x0">
+    <title>Final Spark Adder for WOT</title>
+    <description>Spark added to the Final Base Advance derived from the main spark tables at WOT.&#013;&#010;&#013;&#010;Scales with RPM. Use this function to provide additional advance in WOT mode.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="83" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9C76" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
+      <units>Engine RPM</units>
+      <indexcount>7</indexcount>
+      <max>0.000000</max>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/4">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9C78" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
+      <units>Extra Advance</units>
+      <indexcount>7</indexcount>
+      <max>0.000000</max>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/4">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFFUNCTION>
+  <XDFCONSTANT uniqueid="0x3E88">
+    <title>Global Spark Adder</title>
+    <description>Adds a fixed amount of spark advance after all adders and multipliers are applied.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="83" />
+    <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9BAA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Degrees</units>
+    <rangehigh>0.000000</rangehigh>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/4">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x5EF0">
+    <title>Global Spark Multiplier</title>
+    <description>Multiplies the value of final spark advance, after all other adders and corrections have run.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="83" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9BC8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>X</units>
+    <rangehigh>0.000000</rangehigh>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/128">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x6C2B">
+    <title>Spark Upper Clip</title>
+    <description>The Upper Spark Clip.&#013;&#010;&#013;&#010;Its not advisable to change this, as this is the mechanical limit of the Electronic Distrbuter Cap.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="83" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9BC7" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Degrees</units>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/4">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x66FD">
+    <title>Spark Lower Clip</title>
+    <description>The Lower Spark Clip.&#013;&#010;&#013;&#010;Its not advisable to change this, as this is the mechanical limit of the Electronic Distrbuter Cap.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="83" />
+    <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9BC6" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Degrees</units>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/4">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x2518">
+    <title>[E Series] Spark Below Run</title>
+    <description>The spark advance when the engine is below the RPM threshold needed to be considered running.</description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="83" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9168" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Degrees</units>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/4">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x4851">
     <title>ECT/ACT Blend Ratio for MBT Adjustment</title>
     <description>Defines the Blend Ratio of ECT and ACT Used as input for:&#013;&#010;&quot;MBT Multiplier vs ECT/ACT Blend&quot;&#013;&#010;&#013;&#010;0.0 = ECT Only&#013;&#010;1.0 = Equal Blend&#013;&#010;2.0 = ACT Only </description>
+    <CATEGORYMEM index="0" category="8" />
+    <CATEGORYMEM index="1" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9BCA" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Ratio</units>
     <decimalpl>3</decimalpl>
@@ -2429,12 +2728,16 @@
   <XDFFLAG uniqueid="0x2224">
     <title>Checksum Switch</title>
     <description>Defines if the ECU verifies its contents via Checksum.&#013;&#010;&#013;&#010;Set = Verify ECU Calibration and Code&#013;&#010;Not Set = Ignore Checksum</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="21" />
     <EMBEDDEDDATA mmedaddress="0x96DA" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0xC19">
     <title>ADPLAM</title>
     <description>Not yet defined.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>LAMBSE</units>
     <decimalpl>3</decimalpl>
@@ -2445,21 +2748,11 @@
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x790">
-    <title>Max Permitted Transient Fuel for LTFT</title>
-    <description>If the amount of Transient Fueling exceedes this value LTFT learning is disabled.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96C6" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>uS</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X*2">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x3827">
     <title>Default Cranking Timer</title>
     <description>The Default Value of the Cranking Timer.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="22" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96C5" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Sec</units>
     <decimalpl>0</decimalpl>
@@ -2473,6 +2766,8 @@
   <XDFCONSTANT uniqueid="0x4327">
     <title>Cranking Timer Limit</title>
     <description>The Highest Allowed Value of the Cranking Timer.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="21" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96C4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Sec</units>
     <decimalpl>0</decimalpl>
@@ -2486,6 +2781,8 @@
   <XDFCONSTANT uniqueid="0x3654">
     <title>ECT/ACT Blend Ratio for Accel Enrich</title>
     <description>Defines the Blend Ratio of ECT and ACT Used as input for:&#013;&#010;&quot;AE Table&quot;&#013;&#010;&#013;&#010;0.0 = ECT Only&#013;&#010;1.0 = Equal Blend&#013;&#010;2.0 = ACT Only </description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="73" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96BC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Ratio</units>
     <decimalpl>3</decimalpl>
@@ -2499,6 +2796,8 @@
   <XDFCONSTANT uniqueid="0x2CFF">
     <title>ECT/ACT Blend Ratio for Transient Fuel / Wall Wetting</title>
     <description>Defines the Blend Ratio of ECT and ACT Used as input for the Transient Fuel Transfer Constant and Time Constant.&#013;&#010;&#013;&#010;0.0 = ECT Only&#013;&#010;1.0 = Equal Blend&#013;&#010;2.0 = ACT Only </description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="72" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x96BA" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Ratio</units>
     <decimalpl>3</decimalpl>
@@ -2512,18 +2811,24 @@
   <XDFFLAG uniqueid="0x75E9">
     <title>Transient Fuel MAP Check Skip</title>
     <description>Defines if the Transient Fuel / Wall Wetting Logic should skip checking MAP thresholds.&#013;&#010;&#013;&#010;Set = Skip</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="72" />
     <EMBEDDEDDATA mmedaddress="0x9698" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0x31A0">
     <title>Transient Fuel Initial State Switch</title>
     <description>Defines the Initial State that is assumed by Transient Fuel.&#013;&#010;&#013;&#010;Not Set = The Manifold Starts out Dry (Absorbs Predicted Puddle Mass on Startup)&#013;&#010;Set = The Manifold Starts out Wet (Transient Fuel Puddle Already formed)</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="72" />
     <EMBEDDEDDATA mmedaddress="0x9691" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0x3DA0">
     <title>Aircharge Mutliplier</title>
     <description>Mutliplier of the Calculated Final Aircharge via VE.</description>
+    <CATEGORYMEM index="0" category="3" />
+    <CATEGORYMEM index="1" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9676" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Mutliplier</units>
     <decimalpl>3</decimalpl>
@@ -2537,6 +2842,8 @@
   <XDFCONSTANT uniqueid="0x4758">
     <title>BASEMD / Displacement</title>
     <description>This is the Mass of Air Ingested by One Cylinder per PIP Pulse when it is operating with a VE of 100%. Used as a constant to determine the standard aircharge of a cylinder.&#013;&#010;&#013;&#010;This value is automaticlly corrected by the Variable &quot;Cylinder Count (Fuel)&quot; to account for the number of PIPs in a Revolution.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9674" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Pounds (Lb)</units>
     <decimalpl>5</decimalpl>
@@ -2548,9 +2855,26 @@
       <VAR id="Y" type="link" linkid="0x2EEC" />
     </MATH>
   </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x4E73">
+    <title>BASEMD / Displacement (Shown as Estimated Size)</title>
+    <description>BASEMD shown as the Approximate Displacement of the Engine.&#013;&#010;&#013;&#010;This is how the Ti Performance Definitions show this value.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9674" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Liters</units>
+    <decimalpl>3</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/6144.4688">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2EEC">
     <title>Cylinder Count (Fuel)</title>
     <description>This is the Cylinder Count Referenced by Fueling Logic. This is actualy PIPs per Revolution (Using Divide 2).</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Cylinder</units>
     <decimalpl>0</decimalpl>
@@ -2561,9 +2885,114 @@
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x1B38">
+    <title>Cylinder Count (Spark)</title>
+    <description>This is the Cylinder Count used by PIP and Spark related calculations.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95E5" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Cylinders</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x4929">
+    <title>Injector Outputs</title>
+    <description>The number of connected Injector Outputs.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D6" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Count</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x4196">
+    <title>Number of Injectors Per Output</title>
+    <description>The number of injectors connected to a single output.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D7" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Count</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x2058">
+    <title>PIP Events Between Injector Events</title>
+    <description>The number of PIPs between an injector event.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D5" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>PIPs</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x4513">
+    <title>Signature PIP Duty Cycle</title>
+    <description>This is the Duty Cycle (Width) of the Signature PIP that indicates the engine is at TDC with Cylinder 1.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95DC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>Duty %</units>
+    <decimalpl>3</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/65536">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x5F3B">
+    <title>PIP RPM Reliability Low Threshold</title>
+    <description>Below this RPM the PIP is not reliable enough for more advanced calculations.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95D8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/4">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x2F6A">
+    <title>RPM Threshold to Declare Running</title>
+    <description>This is the Minimum RPM the engine must reach to be declared running. The minimum number of PIP pulses must also be reached before leaving crank mode.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9602" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/4">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
   <XDFFUNCTION uniqueid="0x5F1F" flags="0x0">
     <title>Maximum Dashpot vs RPM Error from Idle</title>
     <description>This Function Defines the Maximum amount of Dashpot Airmass based on the Error RPM from Idle Desire.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="64" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x965E" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>RPM Error</units>
@@ -2592,6 +3021,8 @@
   <XDFFUNCTION uniqueid="0x1291" flags="0x0">
     <title>Dashpot Decay vs Dashpot Airmass</title>
     <description>This Function Defines the Decay Rate of the Dashpot.&#013;&#010;&#013;&#010;Input is Current Dashpot Airmass&#013;&#010;Output is the Airmass to Subtract (Per Code Loop)</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="64" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95B8" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Dashpot AM</units>
@@ -2622,12 +3053,16 @@
   <XDFFLAG uniqueid="0x54E">
     <title>Manual Transmission Fitted</title>
     <description>Defines if a Manual Gearbox is present. For the EA-ED EECs this will just cause the EEC to only use tables for Netural (Drive tables are disabled)</description>
+    <CATEGORYMEM index="0" category="10" />
+    <CATEGORYMEM index="1" category="100" />
     <EMBEDDEDDATA mmedaddress="0x961F" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0x84C">
-    <title>Minimum TPS Voltage</title>
+    <title>TPS Minimum Voltage</title>
     <description>Lowest allowed TPS voltage. Below this the TPS is considered faulty.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="21" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x960A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -2638,8 +3073,10 @@
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x4CB4">
-    <title>Maximum TPS Voltage</title>
+    <title>TPS Maximum Voltage</title>
     <description>Highest allowed TPS voltage. Above this the TPS is considered faulty.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="21" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9608" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -2652,6 +3089,8 @@
   <XDFCONSTANT uniqueid="0xBFB">
     <title>Minimum PIP Pulses To Declare Engine Running</title>
     <description>When the engine is cranking, this many PIP pulses must occur before the engine can move from the cranking to running state.&#013;&#010;&#013;&#010;This acts as a form of triggering sync assurance.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9606" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Pulses</units>
     <decimalpl>1</decimalpl>
@@ -2662,21 +3101,11 @@
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x2F6A">
-    <title>RPM Threshold to Declare Running</title>
-    <description>This is the Minimum RPM the engine must reach to be declared running. The minimum number of PIP pulses must also be reached before leaving crank mode.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x9602" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/4">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x5E22">
     <title>TP Voltage - PT Breakpoint</title>
     <description>TP Voltage to switch from Closed Throttle Mode to Part Throttle Mode.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95EC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -2689,6 +3118,8 @@
   <XDFCONSTANT uniqueid="0x70A4">
     <title>TP Voltage - WOT Breakpoint</title>
     <description>TP Voltage to switch from Part Throttle Mode to Wide Open Throttle Mode.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95F2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -2701,6 +3132,8 @@
   <XDFCONSTANT uniqueid="0x319D">
     <title>TP Voltage - PT Breakpoint Hysterisis</title>
     <description>The Hysterisis for the PT Breakpoint.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95F0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -2713,6 +3146,8 @@
   <XDFCONSTANT uniqueid="0x43F5">
     <title>TP Voltage - WOT Breakpoint Hysterisis</title>
     <description>The Hysterisis of the Wide Open Throttle Breakpoint.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="20" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95EE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -2722,47 +3157,11 @@
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1B38">
-    <title>Cylinder Count (Spark)</title>
-    <description>This is the Cylinder Count used by PIP and Spark related calculations.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95E5" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Cylinders</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x4513">
-    <title>Signature PIP Duty Cycle</title>
-    <description>This is the Duty Cycle (Width) of the Signature PIP that indicates the engine is at TDC with Cylinder 1.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95DC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Duty %</units>
-    <decimalpl>3</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/65536">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x5F3B">
-    <title>PIP RPM Reliability Low Threshold</title>
-    <description>Below this RPM the PIP is not reliable enough for more advanced calculations.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x95D8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/4">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
   <XDFFUNCTION uniqueid="0x5465" flags="0x0">
     <title>[E Series] IAC Flow Model</title>
     <description>Used in Very Early EEC instead of the DEBYMA vs MAP IAC Model Table. Converts Desired IAC Flow (DEBYMA) into a duty cycle for the IAC valve.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="61" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x954C" mmedelementsizebits="16" mmedcolcount="10" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Airmass PPM</units>
@@ -2792,6 +3191,8 @@
   <XDFFUNCTION uniqueid="0x1BCB" flags="0x0">
     <title>Desired RPM Max Rate of Change vs Error RPM</title>
     <description>The Maximum Change in Desired RPM Per Idle Logic Run vs The Current Idle Speed Error.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="60" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9530" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Error RPM</units>
@@ -2820,6 +3221,8 @@
   <XDFFUNCTION uniqueid="0x54C2" flags="0x0">
     <title>[E Series] ITM vs Idle Speed Error Netural</title>
     <description>Provides ITM (Ignition Timing Mutliplier) dependent on Idle Speed Error when the EEC is in Closed Loop Idle. This Table is Used when the Gearbox is in Netural.&#013;&#010;&#013;&#010;This Type of Idle Spark Control is only used on Early E Series.&#013;&#010;The Advance Used at Idle that this Mutliplier affects is initially fetched from the MBT at Idle Table.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="63" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9514" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Error RPM</units>
@@ -2848,6 +3251,8 @@
   <XDFFUNCTION uniqueid="0x43D1" flags="0x0">
     <title>[E Series] ITM vs Idle Speed Error Drive</title>
     <description>Provides ITM (Ignition Timing Mutliplier) dependent on Idle Speed Error when the EEC is in Closed Loop Idle. This Table is Used when the Gearbox is in Drive.&#013;&#010;&#013;&#010;This Type of Idle Spark Control is only used on Early E Series.&#013;&#010;The Advance Used at Idle that this Mutliplier affects is initially fetched from the MBT at Idle Table.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="63" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x94F8" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>Error RPM</units>
@@ -2876,6 +3281,8 @@
   <XDFFUNCTION uniqueid="0x56E9" flags="0x0">
     <title>[E Series] ITM vs Dashpot</title>
     <description>Provides ITM (Ignition Timing Mutliplier) for Dashpot. The input is unknown.&#013;&#010;&#013;&#010;&#013;&#010;This Type of Idle Spark Control is only used on Early E Series.&#013;&#010;The Advance Used at Idle that this Mutliplier affects is initially fetched from the MBT at Idle Table.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="63" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x94F0" mmedelementsizebits="8" mmedcolcount="4" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>Unknown</units>
@@ -2904,6 +3311,8 @@
   <XDFFUNCTION uniqueid="0x7900" flags="0x0">
     <title>Dashpot Pre-Position Flow vs RPM Netural</title>
     <description>This is the Initial Dashpot Flow when Dashpot is triggered based on Engine RPM.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="64" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x94D4" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>RPM</units>
@@ -2932,6 +3341,8 @@
   <XDFFUNCTION uniqueid="0x1D20" flags="0x0">
     <title>Dashpot Pre-Position Flow vs RPM Drive</title>
     <description>This is the Initial Dashpot Flow when Dashpot is triggered based on Engine RPM.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="64" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x94B8" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>RPM</units>
@@ -2960,6 +3371,8 @@
   <XDFFUNCTION uniqueid="0x595C" flags="0x0">
     <title>IAC Model Unknown Multiplier</title>
     <description>This is an Unknown Multiplier to the IAC Model.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="61" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x944E" mmedelementsizebits="8" mmedcolcount="6" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>Unknown</units>
@@ -2988,6 +3401,8 @@
   <XDFFUNCTION uniqueid="0x74AA" flags="0x0">
     <title>Closed Loop Idle Control Max RPM vs ECT Drive</title>
     <description>The Maximum RPM that Closed Loop Idle Control can operate in. Above this RPM Idle Air is Strictly Open Loop.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="62" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x942A" mmedelementsizebits="16" mmedcolcount="9" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>ECT</units>
@@ -3016,6 +3431,8 @@
   <XDFFUNCTION uniqueid="0x7A9C" flags="0x0">
     <title>Closed Loop Idle Control Max RPM vs ECT Netural</title>
     <description>The Maximum RPM that Closed Loop Idle Control can operate in. Above this RPM Idle Air is Strictly Open Loop.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="62" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x03" mmedaddress="0x9406" mmedelementsizebits="16" mmedcolcount="9" mmedmajorstridebits="32" mmedminorstridebits="0" />
       <units>ECT</units>
@@ -3041,45 +3458,11 @@
       </MATH>
     </XDFAXIS>
   </XDFFUNCTION>
-  <XDFCONSTANT uniqueid="0x5B27">
-    <title>After Start Idle Speed Adder</title>
-    <description>This Idle Speed Adder is Used after start.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93CE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/4">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x7662">
-    <title>Desired Idle Speed Drive</title>
-    <description>The Desired Idle Speed in Drive.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/4">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x1E91">
-    <title>Desired Idle Speed Netural</title>
-    <description>The Desired Idle Speed in Netural.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93CA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X/4">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2134">
-    <title>Idle Air Adder</title>
+    <title>Final Idle Air Adder</title>
     <description>Adder to Desired Idle Airflow</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="61" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93C0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>PPM</units>
     <datatype>0</datatype>
@@ -3090,8 +3473,10 @@
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x43F6">
-    <title>Idle Air Multiplier</title>
+    <title>Final Idle Air Multiplier</title>
     <description>A Mutliplier to the Final Desired Idle Air, before it is combined with TB Airflow Constant and converted to Duty Cycle.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="61" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93BE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Mutliplier</units>
     <decimalpl>3</decimalpl>
@@ -3105,6 +3490,8 @@
   <XDFCONSTANT uniqueid="0x238D">
     <title>Idle Speed Control P Gain in Dashpot Mode</title>
     <description>This is the P Gain of the Idle Speed Control System used in Dashpot Mode.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="62" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93AA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Gain</units>
     <decimalpl>3</decimalpl>
@@ -3118,6 +3505,8 @@
   <XDFCONSTANT uniqueid="0x19C8">
     <title>Minimum IAC Flow</title>
     <description>This is the Lowest Allowed Flow Through the IAC Valve.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="61" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93A8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>PPM</units>
     <decimalpl>3</decimalpl>
@@ -3131,6 +3520,8 @@
   <XDFCONSTANT uniqueid="0xD3C">
     <title>Throttle Body Airflow Constant</title>
     <description>This is the expected airflow through the throttle body at base idle speed with no adders and the IAC fully closed.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="61" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93A6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>PPM</units>
     <decimalpl>3</decimalpl>
@@ -3144,6 +3535,8 @@
   <XDFCONSTANT uniqueid="0x338B">
     <title>Underspeed Netural Idle Integral Gain</title>
     <description>This is the Integral Gain of the Closed Loop Idle Control System used when the car is in Netural and the engine is &quot;underspeed&quot;, which in EEC terms means the engnine has fallen below a critical RPM threshold and is about to stall.&#013;&#010;&#013;&#010;Tune this like any other PID system. This value will control the rate at which the EEC responds to RPM error over time.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="62" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x939A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>I Gain</units>
     <decimalpl>3</decimalpl>
@@ -3158,6 +3551,8 @@
   <XDFCONSTANT uniqueid="0x5705">
     <title>Netural Idle Integral Gain</title>
     <description>This is the Integral Gain of the Closed Loop Idle Control System used when the car is in Netural and the Engine RPM is inside the EECs Idle RPM Range.&#013;&#010;&#013;&#010;Tune this like any other PID system. This value will control the rate at which the EEC responds to RPM error over time.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="62" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x939C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>I Gain</units>
     <decimalpl>3</decimalpl>
@@ -3172,6 +3567,8 @@
   <XDFCONSTANT uniqueid="0x7421">
     <title>Underspeed Drive Idle Integral Gain</title>
     <description>This is the Integral Gain of the Closed Loop Idle Control System used when the car is in Drive and the engine is &quot;underspeed&quot;, which in EEC terms means the engnine has fallen below a critical RPM threshold and is about to stall.&#013;&#010;&#013;&#010;Tune this like any other PID system. This value will control the rate at which the EEC responds to RPM error over time.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="62" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x939E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>I Gain</units>
     <decimalpl>3</decimalpl>
@@ -3186,6 +3583,8 @@
   <XDFCONSTANT uniqueid="0x12D2">
     <title>Drive Idle Integral Gain</title>
     <description>This is the Integral Gain of the Closed Loop Idle Control System used when the car is in Drive and the Engine RPM is inside the EECs Idle RPM Range.&#013;&#010;&#013;&#010;&#013;&#010;Tune this like any other PID system. This value will control the rate at which the EEC responds to RPM error over time.</description>
+    <CATEGORYMEM index="0" category="6" />
+    <CATEGORYMEM index="1" category="62" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x93A0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>I Gain</units>
     <decimalpl>3</decimalpl>
@@ -3200,6 +3599,8 @@
   <XDFCONSTANT uniqueid="0x7911">
     <title>ECT/ACT Blend Ratio for Temperature vs MAP Lambda</title>
     <description>Defines the Blend Ratio of ECT and ACT Used as input for the Base Fuel Table&#013;&#010;&#013;&#010;0.0 = ECT Only&#013;&#010;1.0 = Equal Blend&#013;&#010;2.0 = ACT Only </description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="71" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91E8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Ratio</units>
     <decimalpl>3</decimalpl>
@@ -3213,6 +3614,8 @@
   <XDFCONSTANT uniqueid="0x581">
     <title>ECT/ACT Blend Ratio for Startup Lambda</title>
     <description>Defines the Blend Ratio of ECT and ACT Used as input for the Startup Fuel Table&#013;&#010;&#013;&#010;0.0 = ECT Only&#013;&#010;1.0 = Equal Blend&#013;&#010;2.0 = ACT Only </description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="71" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91E9" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Ratio</units>
     <decimalpl>3</decimalpl>
@@ -3226,6 +3629,8 @@
   <XDFCONSTANT uniqueid="0x9F0">
     <title>Maximum Vehicle Speed</title>
     <description>This is the maximum allowed Vehicle Speed.</description>
+    <CATEGORYMEM index="0" category="10" />
+    <CATEGORYMEM index="1" category="100" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>km/h</units>
     <datatype>0</datatype>
@@ -3238,47 +3643,10 @@
   <XDFCONSTANT uniqueid="0x2D5">
     <title>Maximum Vehicle Speed Hysterisis</title>
     <description>Hysterisis for Max VSS.</description>
+    <CATEGORYMEM index="0" category="10" />
+    <CATEGORYMEM index="1" category="100" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D9" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>km/h</units>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x2058">
-    <title>PIP Events Between Injector Events</title>
-    <description>The number of PIPs between an injector event.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D5" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>PIPs</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x4929">
-    <title>Injector Outputs</title>
-    <description>The number of connected Injector Outputs.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D6" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Count</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x4196">
-    <title>Number of Injectors Per Output</title>
-    <description>The number of injectors connected to a single output.</description>
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91D7" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>Count</units>
-    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
@@ -3289,6 +3657,8 @@
   <XDFCONSTANT uniqueid="0x28EB">
     <title>Minimum Injector Pulsewidth</title>
     <description>The lowest allowed Injector Fuel Pulse Width. Decel Fuel Cut Bypasses this.</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="70" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91B4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>uS</units>
     <datatype>0</datatype>
@@ -3301,6 +3671,8 @@
   <XDFCONSTANT uniqueid="0x2303">
     <title>Injector Slope</title>
     <description>The Slope of the Fitted Injectors. In LB/Hr</description>
+    <CATEGORYMEM index="0" category="7" />
+    <CATEGORYMEM index="1" category="70" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x91B6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Lbs/hr</units>
     <datatype>0</datatype>
@@ -3313,6 +3685,8 @@
   <XDFCONSTANT uniqueid="0x7279">
     <title>ECT Minimum Voltage</title>
     <description>Lowest Allowed ECT Sensor Voltage, Below this it is considered failed.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="21" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x90EE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -3325,6 +3699,8 @@
   <XDFCONSTANT uniqueid="0x601">
     <title>ECT Maximum Voltage</title>
     <description>Highest Allowed ECT Sensor Voltage, Above this it is considered failed.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="21" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x90F0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -3337,6 +3713,8 @@
   <XDFCONSTANT uniqueid="0x5043">
     <title>ACT Minimum Voltage</title>
     <description>Lowest Allowed ACT Sensor Voltage, Below this it is considered failed.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="21" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x90E2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -3349,6 +3727,8 @@
   <XDFCONSTANT uniqueid="0x62CC">
     <title>ACT Maximum Voltage</title>
     <description>Highest Allowed ACT Sensor Voltage, Above this it is considered failed.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="21" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x90E4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Volts</units>
     <datatype>0</datatype>
@@ -3361,12 +3741,16 @@
   <XDFFLAG uniqueid="0x3B6D">
     <title>Smartlock Enabled</title>
     <description>Set = Smartlock Anti-Theft is Enabled.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="25" />
     <EMBEDDEDDATA mmedaddress="0x8E15" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0x4ACE">
     <title>Default IAC</title>
     <description>The Default Duty Cycle for the IAC, used when Idle Control can&apos;t calculate a Duty Cycle due to Errors.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="22" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8E02" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>Duty %</units>
     <datatype>0</datatype>
@@ -3379,6 +3763,8 @@
   <XDFCONSTANT uniqueid="0x4B4A">
     <title>Default ACT</title>
     <description>The Default Temperature Assumed for ACT when the sensor has failed.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="22" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8E04" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>*C</units>
     <datatype>0</datatype>
@@ -3391,6 +3777,8 @@
   <XDFCONSTANT uniqueid="0x3DE5">
     <title>Default ECT</title>
     <description>The Default Temperature Assumed for ECT when the sensor has failed.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="22" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8E05" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>*C</units>
     <datatype>0</datatype>
@@ -3403,6 +3791,8 @@
   <XDFCONSTANT uniqueid="0xBC0">
     <title>Default MAP</title>
     <description>The Default MAP when the MAP and TPS Sensors have Failed. If the TPS is still functional then it will be used to calculate a substitute MAP.</description>
+    <CATEGORYMEM index="0" category="2" />
+    <CATEGORYMEM index="1" category="22" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x8E06" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>in/HG</units>
     <datatype>0</datatype>
