@@ -1,47 +1,143 @@
-# Open Australian Electronic Engine Control (IV & V) Project
-Welcome to the Open Aus EEC Project! The main goal of this project is to make publiclly available our current best definitions, information and understanding of Australian Ford Electronic Engine Control Systems. This engine control system is most notably used in the very popular EA to AU Falcons but was also present in other cars like the X series Falcons or even other Fords of the era.
+<!-- PROJECT HEADER -->
+<h1 align="center">Open Australian EEC (IV & V) Project</h1>
 
-## Read the Issues Tab FIRST!
-Before Downloading the Repo and trying the enhanced XDFs, I would highly recommend checking the issues tab to ensure you are aware of the outstanding issues with the XDFs or patched binaries before trying them on your own hardware. I take no responsibility for damage to your EEC or engine due to use of the binaries and definitions here. They are a work in progress!
+<p align="center">
+  Reverse engineering, definitions, and tuning resources for Australian Ford EEC ECUs
+</p>
 
-## Version 2.0 XDFs are on the way
-Version 2.0 XDFs are now coming! These XDFs will replace the existing beta versions available now. They have solved all the current known issues and an additional wealth of configurable items have been added. With version 2.0, AU owners can expect:
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-blue">
+  <img src="https://img.shields.io/badge/Release-Upcoming_v1.3-orange">
+  <img src="https://img.shields.io/badge/Copyright License-GPL--3-green">
+</p>
 
--Full control of the Tip-In spark retard system.
+---
 
+## 🚗 Overview
 
--Further Access to HEGO related settings, including Jumpback, Ramp and Transport Delay Multipliers enabling further calibration of the factory narrowband.
+Welcome to the **Open Australian EEC Project**.
 
+This repository aims to make publicly available the **best current definitions, reverse engineering insights, and tooling** for Australian Ford Electronic Engine Control systems.
 
--Access to the Anti-Overheat system configuration, used to disable cylinders when the cylinder head is criticlly overheated.
-
-
--Further access to torque management including scalers for configuring the traction control system and configuring spark retard and cylinder cutting.
-
-
--Access to further idle settings, like base DEBYMA tables and DEBYMA correction for idle speed error + further access to closed loop idle settings like intergrator intensity when engine underspeed / overspeed, etc.
-
-
--Access to fallback defaults for various sensors, functions for Alpha-N fallback fueling and controls for behaviour under failure condtions.
-
-
--Access to settings for the EGR and canister purge system.
+These ECUs are found in vehicles such as:
+- EA → AU Falcons
+- X-series Falcons
+- Potentially Ford (Australia) platforms of the era
 
 
--Further control of the BTR automatic transmission.
+## ⚠️ Important Notice
+
+> **CHECK THE ISSUES TAB FIRST**
+
+Before using any definitions or binaries:
+
+- Check the **Issues tab** for known problems  
+- Be aware these files are **work-in-progress**  
+- Use at your own risk - Read through this page before downloading
 
 
-## Navigating this Repo
-This Repo contains various files and information relating to the above mentioned vehicles and their EEC ECUs. This includes definition files, Disassembly listings with various levels of commenting, ADX files for logging the EECs via a Moates QH (should you own one) and any other related information.
+## 📡Download
+
+Use the **Code** button above to **Download ZIP**
 
 
-## Special Thanks
-A special thank you to the people who made this project of mine a reality:
+## 🚀 Upcoming Release – Version 1.3
 
--Jason Bolger
+> A major refinement release focused patches, expanded control and support of more strategies
 
--Kendall Baker
+### 🚗 Planned Support Status  
+<p align="left">  
+<img src="https://img.shields.io/badge/NGIC9-Supported-blue">
+<img src="https://img.shields.io/badge/NGVB5-Supported-blue"><br>
+<img src="https://img.shields.io/badge/HWAD3-Supported-blue">
+<img src="https://img.shields.io/badge/NVMG84-Supported-blue"><br>
+<img src="https://img.shields.io/badge/N4ABG-Supported-blue">
+<img src="https://img.shields.io/badge/NVAF9-Supported-blue"><br><br>
+<img src="https://img.shields.io/badge/3DAC-Discontunued-orange"><br>
+<img src="https://img.shields.io/badge/N9XJ4-Discontunued-orange"><br>
+</p>
 
--Cody Wiseman & Friends
+### ✨ Planned Features
 
--Dantob (Github - aus-eec repo owner)
+- [ ] Full Time Wideband Closed Loop Patch (*With Supported Wideband Controller*)
+- [ ] Advanced Engine Speed Limiting Patch for Fuel or Spark Hard or Mild Cuts
+- [ ] Other Small Quality of Life Patches, Definition Catagories Restructured
+- [ ] Full BTR Control. Line Pressure Calculation, Shift Points, S6 Activation, etc
+- [ ] More Fueling Settings Added, Closed Loop Activation, Deactivation, etc
+- [ ] Diagnostic Settings Added, Edit obd live data config, configure faults, etc
+- [ ] Many other minor changes and additions
+
+
+## 📂 Repository Structure
+
+To get only the files for your car, look for the folder matching your vehicle type. Inside are definitions and base / example tunes if available.
+
+
+## 🧠 Features & Capabilities
+
+This project provides access to:
+
+- 🔧 Advanced ECU definition files (XDF)
+- 🛠 Base tunes and calibration examples to help you setup advanced features
+
+Also available directly via Midnight Tuning:
+- 💻 ADX Files for Realtime Data Feedback on Moates Quarterhorse Chips
+- 📜 Calibration Guides with tips and tricks for Advanced Tuners and Calibrators
+- 📧 Ready Made Complete Tunes for Basic Setups
+
+
+## 🛠 Tools & Requirements
+
+To use this repository effectively:
+
+- **TunerPro** - Or any other tool fully supporting the .xdf format
+
+To actually tune a vehicle:
+- **Ti Performance J3 Chip** -- Recommended for Most
+- **Moates QuarterHorse (QH)** -- For Live Tuning Support
+
+For EEC-V tuning only:
+- **Any ECU Flashing Tool supporting .bin** -- Bin Size Conversion Likely Required
+
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+If you:
+- Find definition or patch issues 
+- Have definition improvements of your own to submit  
+- Or have anything else to add
+
+➡️ Open an issue or submit a pull request
+☎️ Contact Midnight Tuning Directly - [Here](https://www.midnightuning.shop/)
+
+
+## ⚠️ Emissions & Legal Compliance
+
+Some files and modifications provided in this repository may:
+
+- Alter or disable factory emissions control systems  
+- Cause a vehicle to become **non-compliant with local laws and regulations**  
+
+It is **solely the responsibility of the user** to:
+
+- Ensure compliance with all applicable **local, state, and national laws**
+- Verify that any modifications are legal for their intended use
+- Restrict use to **off-road or motorsport applications** where required
+
+The repository maintainers and contributors **accept no responsibility** for:
+
+- Illegal use of these materials  
+- Circumvention of emissions regulations  
+- Use on public roads where such modifications are prohibited  
+
+By downloading or using any content from this repository, you agree to these terms.
+
+
+## ⭐ Support the Project
+
+If you find this useful:
+- Star the repo ⭐
+- If you feel it is warranted, send me a coffee!
+- Submit an issue request for any problems or potential improvements
