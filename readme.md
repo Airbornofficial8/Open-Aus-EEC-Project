@@ -41,13 +41,13 @@ Before using any definitions or binaries:
 Use the **Code** button above to **Download ZIP**
 
 
-## 🚀 Upcoming Release – Version 1.3
+## 🚀 Release Version 1.3 - The Advanced Calibration Update
 
-> A major refinement release focused patches, expanded control and support of more strategies
+> A major release focusing on advanced settings, fixes to various long running bugs, new patches and documentation improvements
 
 ### 🚗 Planned Support Status  
 <p align="left">  
-<img src="https://img.shields.io/badge/NGIC9-Supported-blue">
+<img src="https://img.shields.io/badge/NGIC9-Released-green">
 <img src="https://img.shields.io/badge/NGVB5-Supported-blue"><br>
 <img src="https://img.shields.io/badge/HWAD3-Supported-blue">
 <img src="https://img.shields.io/badge/NVMG84-Supported-blue"><br>
@@ -57,15 +57,16 @@ Use the **Code** button above to **Download ZIP**
 <img src="https://img.shields.io/badge/N9XJ4-Discontunued-orange"><br>
 </p>
 
-### ✨ Planned Features
+### ✨ Feature Set
 
 - [ ] Full Time Wideband Closed Loop Patch (*With Supported Wideband Controller*)
 - [ ] Advanced Engine Speed Limiting Patch for Fuel or Spark Hard or Mild Cuts
 - [ ] Other Small Quality of Life Patches, Definition Catagories Restructured
 - [ ] Full BTR Control. Line Pressure Calculation, Shift Points, S6 Activation, etc
-- [ ] More Fueling Settings Added, Closed Loop Activation, Deactivation, etc
+- [ ] More Fueling Settings Added, Closed Loop Activation, Deactivation, Decel Fuel Cutoff Controls, Lean Cruise Controls and Others
 - [ ] Diagnostic Settings Added, Edit obd live data config, configure faults, etc
-- [ ] Many other minor changes and additions
+- [ ] Initial addition of NGICX settings, intended for the future release of NGICX
+- [ ] Many other minor changes and addition
 
 
 ## 📂 Repository Structure
