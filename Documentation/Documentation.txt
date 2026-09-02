@@ -1,0 +1,1 @@
+This folder contains assorted documentation on the Boost Ready Binaries as well as Definitions
